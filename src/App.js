@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import NewsCards from "./components/NewsCards/NewsCards";
 import useStyles from "./styles.js";
-import wordsToNumbers from 'words-to-numbers'
+import wordsToNumbers from "words-to-numbers";
 
 const alanKey =
-  "1b068b79809a982bf798766e019a85b02e956eca572e1d8b807a3e2338fdd0dc/stage";
+  "Paste your alan key here";
 
 const App = () => {
   const [newsArticles, setnewsArticles] = useState([]);
@@ -20,14 +20,17 @@ const App = () => {
         } else if (command === "highlight") {
           setActiveArticle((preActiveArticle) => preActiveArticle + 1);
         } else if (command === "open") {
-          const parsedNumber = number.length > 2 ? wordsToNumbers(number, {fuzzy: true}) : number;
-          const article = articles[parsedNumber-1]
-          
-          if(parsedNumber > 20){
-            alanBtn().playText("Please try searching within the card numbers")
-          } else if(article){
+          const parsedNumber =
+            number.length > 2
+              ? wordsToNumbers(number, { fuzzy: true })
+              : number;
+          const article = articles[parsedNumber - 1];
+
+          if (parsedNumber > 20) {
+            alanBtn().playText("Please try searching within the card numbers");
+          } else if (article) {
             window.open(article.url, "_blank");
-            alanBtn().playText('Opening...')
+            alanBtn().playText("Opening...");
           }
         }
       },
@@ -45,6 +48,15 @@ const App = () => {
           alt="Alan Logo"
         />
       </div>
+      <div style={{width:"60%", height:"auto",  margin:"auto", alignItems:"center"}} className={classes.card}>
+          <h3>HOW TO USE</h3>
+          <ul style={{listStyleType:"none"}}>
+            <li>Click on the <b style={{color: "yellow"}}>Microphone</b> button at the bottom right corner</li>
+            <li>Click <b style={{color: "yellow"}}>Allow</b> to use Microphone for Talking with the website</li>
+            <li>Say: <b style={{color: "yellow"}}>Give me the latest news</b></li>
+            <li>Say: <b style={{color: "yellow"}}>GO BACK</b></li>
+          </ul>
+        </div>
       <NewsCards articles={newsArticles} activeArticle={activeArticle} />
     </div>
   );

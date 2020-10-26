@@ -58,7 +58,7 @@ const NewsCards = ({ articles, activeArticle }) => {
                     {infocard.info}
                   </Typography>
                 ) : null}<br />
-                <Typography variant="h6"><b>Try saying: </b><br /><i>{infocard.text}</i></Typography>
+                <Typography variant="h6"><b style={{color:"yellow"}}>Try saying: </b><br /><i>{infocard.text}</i></Typography>
               </div>
             </Grid>
           ))}
